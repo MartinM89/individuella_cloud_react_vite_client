@@ -1,0 +1,16 @@
+:root {
+  --bg-light: beige;
+  --bg-dark: darkslategray;
+  --button-bg: #00bfae;
+  --button-bg-hover: #008c7e;
+  --button-bg-active: #006e63;
+  --button-text: #fff;
+  --button-border: #008c7e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}

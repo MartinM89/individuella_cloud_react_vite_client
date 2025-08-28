@@ -1,0 +1,117 @@
+body {
+  background-color: var(--bg-dark);
+}
+
+input {
+  background-color: var(--bg-light);
+  border: none;
+  height: 3rem;
+  padding-left: 16px;
+  outline: none;
+  border-radius: 2px;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+  transition: border 0.2s, border-radius 0.2s ease;
+}
+
+input:focus {
+  border: solid 2px var(--bg-dark);
+  border-radius: 4px;
+  padding-left: 14px;
+  transition: border 0.2s, border-radius 0.2s ease;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1.25rem; */
+  width: 23rem;
+  border-radius: 2px;
+  padding: 20px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+  height: calc(fit-content + 20px);
+  transition: height 3s, box-shadow 0.2s ease;
+}
+
+.form:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-wrapper__submit-button {
+  height: 3rem;
+  font-weight: bold;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 2px;
+  font-size: 1rem;
+  color: rgb(22, 22, 22);
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease, color 0.2s, margin 0.1s ease;
+  margin: 1px 0 1px 0;
+}
+
+.form-wrapper__submit-button.loading {
+  opacity: 0.5;
+}
+
+.form-wrapper__submit-button:hover {
+  background-color: var(--button-bg-hover);
+  color: var(--bg-light);
+  cursor: pointer;
+}
+
+.form-wrapper__submit-button:active {
+  background-color: var(--button-bg-active);
+  border: none;
+  color: var(--bg-light);
+  margin: 2px 0 0 0;
+  padding: -1px;
+}
+
+.form-wrapper__submit-button:focus {
+  background-color: var(--button-bg-hover);
+  color: var(--bg-light);
+}
+
+.form-wrapper__errors {
+  color: var(--bg-light);
+  text-align: center;
+  height: 20px;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  opacity: 1;
+  transition: height 0.5s ease, opacity 0.5s ease;
+}
+
+.form-wrapper__errors.hidden {
+  height: 0;
+  opacity: 0;
+  margin-bottom: 0;
+}
+
+textarea {
+  background-color: var(--bg-light);
+  padding: 14px;
+  font-weight: bold;
+  min-width: 328px;
+  max-width: 328px;
+  min-height: 50px;
+  max-height: 100px;
+  margin-bottom: 1.25rem;
+  outline: none;
+}
+
+textarea:focus {
+  border: solid 2px var(--bg-dark);
+  border-radius: 4px;
+  padding-left: 14px;
+  transition: border 0.2s, border-radius 0.2s ease;
+}
