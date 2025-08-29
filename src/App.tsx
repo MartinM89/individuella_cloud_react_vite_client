@@ -104,6 +104,7 @@ export default function App() {
         action=''
         className='form'
       >
+        <span className='form-wrapper__title'>Contact Form</span>
         {inputs.map(input => {
           return (
             <>

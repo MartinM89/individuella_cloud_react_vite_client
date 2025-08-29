@@ -1,11 +1,19 @@
 body {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-light);
+}
+
+.form-wrapper__title {
+  color: var(--bg-light);
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+  font-size: 2rem;
+  text-align: center;
 }
 
 input {
   background-color: var(--bg-light);
   border: none;
-  height: 3rem;
+  height: 2.5rem;
   padding-left: 16px;
   outline: none;
   border-radius: 2px;
@@ -24,13 +32,13 @@ input:focus {
 .form {
   display: flex;
   flex-direction: column;
-  /* gap: 1.25rem; */
+  background-color: var(--bg-dark);
   width: 23rem;
   border-radius: 2px;
-  padding: 20px;
+  padding: 30px;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
   height: calc(fit-content + 20px);
-  transition: height 3s, box-shadow 0.2s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .form:hover {
@@ -100,18 +108,20 @@ input:focus {
 textarea {
   background-color: var(--bg-light);
   padding: 14px;
+  border-radius: 3px;
   font-weight: bold;
-  min-width: 328px;
-  max-width: 328px;
+  min-width: 308px;
+  max-width: 308px;
   min-height: 50px;
-  max-height: 100px;
+  max-height: 130px;
+  height: 75px;
   margin-bottom: 1.25rem;
   outline: none;
 }
 
 textarea:focus {
   border: solid 2px var(--bg-dark);
-  border-radius: 4px;
+  border-radius: 3px;
   padding-left: 14px;
   transition: border 0.2s, border-radius 0.2s ease;
 }
