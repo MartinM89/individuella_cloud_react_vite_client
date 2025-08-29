@@ -1,9 +1,9 @@
 import type { Form } from '../App';
 
-export async function fetchCreateContactForm(form: Form) {
-  console.log(import.meta.env.VITE_API_BASE_URL + 'SaveContact');
+const BASE_API_URL = 'https://ht24individuellacloudmartinm.azurewebsites.net/api/';
 
-  await fetch(`${import.meta.env.VITE_API_BASE_URL}SaveContact`, {
+export async function fetchCreateContactForm(form: Form) {
+  await fetch(BASE_API_URL + 'SaveContact', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
