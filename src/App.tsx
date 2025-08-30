@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent, type MouseEvent } from 'react';
 import { fetchCreateContactForm } from './api/fetchCreateContactForm.ts';
 import './App.css';
+import ThemeSelect from './ThemeSelect.tsx';
 
 const inputs = [
   { type: 'text', name: 'firstName', placeholder: 'First name' },
@@ -99,52 +100,55 @@ export default function App() {
   };
 
   return (
-    <div className='form-wrapper'>
-      <form
-        action=''
-        className='form'
-      >
-        <span className='form-wrapper__title'>Contact Form</span>
-        {inputs.map(input => {
-          return (
-            <>
-              <input
-                key={input.placeholder}
-                name={input.name}
-                required
-                type={input.type}
-                value={formInfo[input.name as keyof Form]}
-                placeholder={input.placeholder}
-                onChange={e => {
-                  handleChange(e);
-                  handleErrors(e);
-                }}
-              />
-            </>
-          );
-        })}
-        <textarea
-          name='message'
-          required
-          value={formInfo.message}
-          id=''
-          placeholder='Message'
-          onChange={e => {
-            handleChange(e);
-            handleErrors(e);
-          }}
-        ></textarea>
-        <span className={`form-wrapper__errors ${isSpanVisible}`}>{errorMessage}</span>
-        <button
-          className={`form-wrapper__submit-button ${isLoading ? 'loading' : ''}`}
-          type='submit'
-          disabled={isLoading}
-          onClick={e => handleSumbit(e)}
+    <>
+      <ThemeSelect />
+      <div className='form-wrapper'>
+        <form
+          action=''
+          className='form'
         >
-          {isLoading ? 'Sending...' : 'Submit'}
-        </button>
-      </form>
-    </div>
+          <span className='form-wrapper__title'>Contact Form</span>
+          {inputs.map(input => {
+            return (
+              <>
+                <input
+                  key={input.placeholder}
+                  name={input.name}
+                  required
+                  type={input.type}
+                  value={formInfo[input.name as keyof Form]}
+                  placeholder={input.placeholder}
+                  onChange={e => {
+                    handleChange(e);
+                    handleErrors(e);
+                  }}
+                />
+              </>
+            );
+          })}
+          <textarea
+            name='message'
+            required
+            value={formInfo.message}
+            id=''
+            placeholder='Message'
+            onChange={e => {
+              handleChange(e);
+              handleErrors(e);
+            }}
+          ></textarea>
+          <span className={`form-wrapper__errors ${isSpanVisible}`}>{errorMessage}</span>
+          <button
+            className={`form-wrapper__submit-button ${isLoading ? 'loading' : ''}`}
+            type='submit'
+            disabled={isLoading}
+            onClick={e => handleSumbit(e)}
+          >
+            {isLoading ? 'Sending...' : 'Submit'}
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 

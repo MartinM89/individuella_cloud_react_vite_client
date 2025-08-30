@@ -1,16 +1,170 @@
-:root {
-  --bg-light: beige;
-  --bg-dark: darkslategray;
-  --button-bg: #00bfae;
-  --button-bg-hover: #008c7e;
-  --button-bg-active: #006e63;
-  --button-text: #fff;
-  --button-border: #008c7e;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  color-scheme: light dark;
+  --dark: darkslategray;
+  --light: beige;
+  --fg: light-dark(var(--dark), var(--light));
+  --bg: light-dark(var(--light), var(--dark));
+  color: var(--fg);
+  background-color: var(--bg);
+
+  --button-dark-bg: #4a7c59;
+  --button-light-bg: #00bfae;
+  --button-bg: light-dark(var(--button-light-bg), var(--button-dark-bg));
+
+  --button-dark-bg-hover: #3e6a4d;
+  --button-light-bg-hover: #008c7e;
+  --button-bg-hover: light-dark(var(--button-light-bg-hover), var(--button-dark-bg-hover));
+
+  --button-dark-bg-active: #345a41;
+  --button-light-bg-active: #006e63;
+  --button-bg-active: light-dark(var(--button-light-bg-active), var(--button-dark-bg-active));
+
+  --button-dark-fg: #131313;
+  --button-light-fg: #e3e3e3;
+  --button-fg: light-dark(var(--button-light-fg), var(--button-dark-fg));
+
+  --input-dark-bg: #fdfbf7;
+  --input-light-bg: #fdfbf7;
+  --input-bg: light-dark(var(--input-light-bg), var(--input-dark-bg));
+
+  --input-dark-bg-focus: var(--light);
+  --input-light-bg-focus: var(--dark);
+  --input-bg-focus: light-dark(var(--input-light-bg-focus), var(--input-dark-bg-focus));
+
+  --input-font-dark-color: #131313;
+  --input-font-light-color: #131313;
+  --input-font-color: light-dark(var(--input-font-light-color), var(--input-font-dark-color));
+
+  --input-border-size: 2px;
+}
+
+button {
+  cursor: pointer;
+}
+
+:root:has(option[id='theme-system']:checked) {
+  color-scheme: light dark;
+
+  input,
+  textarea {
+    background-color: var(--input-bg);
+    color: var(--input-font-color);
+  }
+
+  input:focus,
+  textarea:focus {
+    border: solid var(--input-border-size) var(--input-bg-focus);
+  }
+
+  button {
+    background-color: var(--button-bg);
+    color: var(--button-fg);
+  }
+
+  button:hover {
+    background-color: var(--button-bg-hover);
+  }
+
+  button:active {
+    background-color: var(--button-bg-active);
+  }
+
+  .form {
+    background-color: var(--fg);
+  }
+
+  .form-wrapper__title {
+    color: var(--bg);
+  }
+
+  .form-wrapper__errors {
+    color: var(--bg);
+  }
+}
+
+:root:has(option[id='theme-light']:checked) {
+  color-scheme: light;
+
+  input,
+  textarea {
+    background-color: var(--input-bg);
+    color: var(--input-font-color);
+  }
+
+  input:focus,
+  textarea:focus {
+    border: solid var(--input-border-size) var(--input-bg-focus);
+  }
+
+  button {
+    background-color: var(--button-bg);
+    color: var(--button-fg);
+  }
+
+  button:hover {
+    background-color: var(--button-bg-hover);
+  }
+
+  button:active {
+    background-color: var(--button-bg-active);
+  }
+
+  .form {
+    background-color: var(--fg);
+  }
+
+  .form-wrapper__title {
+    color: var(--bg);
+  }
+
+  .form-wrapper__errors {
+    color: var(--bg);
+  }
+}
+
+:root:has(option[id='theme-dark']:checked) {
+  color-scheme: dark;
+
+  input,
+  textarea {
+    background-color: var(--input-bg);
+    color: var(--input-font-color);
+  }
+
+  input:focus,
+  textarea:focus {
+    border: solid var(--input-border-size) var(--input-bg-focus);
+  }
+
+  button {
+    background-color: var(--button-bg);
+    color: var(--button-fg);
+  }
+
+  button:hover {
+    background-color: var(--button-bg-hover);
+  }
+
+  button:active {
+    background-color: var(--button-bg-active);
+  }
+
+  .form {
+    background-color: var(--fg);
+  }
+
+  .form-wrapper__title {
+    color: var(--bg);
+  }
+
+  .form-wrapper__errors {
+    color: var(--bg);
+  }
 }
