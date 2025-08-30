@@ -1,0 +1,16 @@
+select {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: var(--bg);
+  color: var(--fg);
+  border: solid 2px var(--fg);
+  font-weight: bold;
+  padding: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+option {
+  font-weight: bold;
+}
