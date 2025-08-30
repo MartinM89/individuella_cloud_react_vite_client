@@ -1,14 +1,29 @@
-select {
+.theme-select {
   position: absolute;
   top: 6px;
   left: 6px;
+}
+
+label {
+  margin-right: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+select {
   background-color: var(--bg);
   color: var(--fg);
-  border: solid 2px var(--fg);
+  border: solid 1px var(--fg);
   font-weight: bold;
-  padding: 5px;
+  padding: 3px;
   cursor: pointer;
   outline: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+select:hover {
+  background-color: var(--fg);
+  color: var(--bg);
 }
 
 option {

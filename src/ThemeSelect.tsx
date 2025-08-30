@@ -11,10 +11,10 @@ export default function ThemeSelect() {
   }, [theme]);
 
   return (
-    <>
+    <div className='theme-select'>
+      <label htmlFor='theme select'>Theme:</label>
       <select
-        name=''
-        id=''
+        id='theme select'
         value={theme}
         onChange={e => setTheme(e.target.value as Theme)}
       >
@@ -37,6 +37,6 @@ export default function ThemeSelect() {
           Dark
         </option>
       </select>
-    </>
+    </div>
   );
 }
