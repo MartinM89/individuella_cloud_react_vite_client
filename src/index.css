@@ -26,8 +26,8 @@
   --button-light-bg-active: #006e63;
   --button-bg-active: light-dark(var(--button-light-bg-active), var(--button-dark-bg-active));
 
-  --button-dark-fg: #131313;
-  --button-light-fg: #e3e3e3;
+  --button-dark-fg: #fdfdfd;
+  --button-light-fg: #131313;
   --button-fg: light-dark(var(--button-light-fg), var(--button-dark-fg));
 
   --input-dark-bg: #fdfbf7;
