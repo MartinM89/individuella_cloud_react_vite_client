@@ -3,12 +3,22 @@ import { fetchCreateContactForm } from './api/fetchCreateContactForm.ts';
 import './App.css';
 import ThemeSelect from './ThemeSelect.tsx';
 
+/**
+ * Input array, creates all inputs in the form.
+ * Add new object to the array with type, name
+ * and placeholder to generate a new input.
+ */
+
 const inputs = [
   { type: 'text', name: 'firstName', placeholder: 'First name' },
   { type: 'text', name: 'lastName', placeholder: 'Last name' },
   { type: 'email', name: 'email', placeholder: 'Email' },
   { type: 'text', name: 'phoneNumber', placeholder: 'Phone number' },
 ];
+
+/**
+ * Type matching the request to the api
+ */
 
 export type Form = {
   firstName: string;
@@ -18,16 +28,17 @@ export type Form = {
   message: string;
 };
 
-export default function App() {
-  const [formInfo, setFormInfo] = useState<Form>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    message: '',
-  });
+const emptyForm: Form = { firstName: '', lastName: '', email: '', phoneNumber: '', message: '' };
 
-  const [isSpanVisible, setIsSpanVisible] = useState<string>('hidden');
+type ErrorState = 'hidden' | 'visible';
+
+/**
+ * App component renders the form visible on the starting page.
+ */
+
+export default function App() {
+  const [formInfo, setFormInfo] = useState<Form>(emptyForm);
+  const [isErrorVisible, setIsErrorVisible] = useState<ErrorState>('hidden');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -42,40 +53,40 @@ export default function App() {
 
   const handleErrors = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    const newFormInfo = { ...formInfo, [name]: value };
+    const newFormInfo: Form = { ...formInfo, [name]: value };
 
     if (!validateName(newFormInfo.firstName) && newFormInfo.firstName.length != 0) {
       setErrorMessage('First name needs to be 3 to 20 letters long');
-      setIsSpanVisible('not-hidden');
+      setIsErrorVisible('visible');
       return;
     }
 
     if (!validateName(newFormInfo.lastName) && newFormInfo.lastName.length != 0) {
       setErrorMessage('Last name needs to be 3 to 20 letters long');
-      setIsSpanVisible('not-hidden');
+      setIsErrorVisible('visible');
       return;
     }
 
     if (!validateGmail(newFormInfo.email) && newFormInfo.email.length != 0) {
       setErrorMessage('Email needs to be a "gmail"');
-      setIsSpanVisible('not-hidden');
+      setIsErrorVisible('visible');
       return;
     }
 
     if (!validatePhoneNumber(newFormInfo.phoneNumber) && newFormInfo.phoneNumber.length != 0) {
       setErrorMessage('Phone needs to be numbers only');
-      setIsSpanVisible('not-hidden');
+      setIsErrorVisible('visible');
       return;
     }
 
     if (!validateMessage(newFormInfo.message) && newFormInfo.message.length != 0) {
       setErrorMessage('Message cant be more than 250 letters long');
-      setIsSpanVisible('not-hidden');
+      setIsErrorVisible('visible');
       return;
     }
 
     setErrorMessage('');
-    setIsSpanVisible('hidden');
+    setIsErrorVisible('hidden');
   };
 
   const handleSumbit = async (event: MouseEvent<HTMLButtonElement>) => {
@@ -86,14 +97,8 @@ export default function App() {
 
       await fetchCreateContactForm(formInfo);
 
-      setFormInfo({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        message: '',
-      });
-      setIsSpanVisible('hidden');
+      setFormInfo(emptyForm);
+      setIsErrorVisible('hidden');
     } finally {
       setIsLoading(false);
     }
@@ -102,12 +107,12 @@ export default function App() {
   return (
     <>
       <ThemeSelect />
-      <div className='form-wrapper'>
+      <main className='form-wrapper'>
         <form
           action=''
           className='form'
         >
-          <span className='form-wrapper__title'>Contact Form</span>
+          <h1 className='form-wrapper__title'>Contact Form</h1>
           {inputs.map(input => {
             return (
               <>
@@ -137,7 +142,7 @@ export default function App() {
               handleErrors(e);
             }}
           ></textarea>
-          <span className={`form-wrapper__errors ${isSpanVisible}`}>{errorMessage}</span>
+          <span className={`form-wrapper__errors ${isErrorVisible}`}>{errorMessage}</span>
           <button
             className={`form-wrapper__submit-button ${isLoading ? 'loading' : ''}`}
             type='submit'
@@ -147,34 +152,58 @@ export default function App() {
             {isLoading ? 'Sending...' : 'Submit'}
           </button>
         </form>
-      </div>
+      </main>
     </>
   );
 }
 
-function validateName(value: string): boolean {
-  if (value.length < 3 || value.length > 20) {
+/**
+ * Validates if a name is between 3 to 20 letters long
+ * @param {string} name
+ * @returns {boolean}
+ */
+
+function validateName(name: string): boolean {
+  if (name.length < 3 || name.length > 20) {
     return false;
   }
   return true;
 }
 
-function validateGmail(value: string): boolean {
-  if (!value.includes('@gmail.com')) {
+/**
+ * Validates if the email is a 'gmail'
+ * @param {string} email
+ * @returns {boolean}
+ */
+
+function validateGmail(email: string): boolean {
+  if (!email.includes('@gmail.com')) {
     return false;
   }
   return true;
 }
 
-function validatePhoneNumber(value: string): boolean {
-  if (isNaN(Number(value))) {
+/**
+ * Validates that the phone number contains only digits
+ * @param {string} phoneNumber
+ * @returns {boolean}
+ */
+
+function validatePhoneNumber(phoneNumber: string): boolean {
+  if (isNaN(Number(phoneNumber))) {
     return false;
   }
   return true;
 }
 
-function validateMessage(value: string): boolean {
-  if (value.length > 250) {
+/**
+ * Validates that the message is no longer than 250 letters long
+ * @param {string} message
+ * @returns {boolean}
+ */
+
+function validateMessage(message: string): boolean {
+  if (message.length > 250) {
     return false;
   }
   return true;
