@@ -7,42 +7,29 @@
 
 :root {
   color-scheme: light dark;
-  --dark: darkslategray;
-  --light: beige;
-  --fg: light-dark(var(--dark), var(--light));
-  --bg: light-dark(var(--light), var(--dark));
-  color: var(--fg);
-  background-color: var(--bg);
 
-  --button-dark-bg: #4a7c59;
-  --button-light-bg: #00bfae;
-  --button-bg: light-dark(var(--button-light-bg), var(--button-dark-bg));
+  --bg-light: hsl(210, 25%, 96%);
+  --fg-light: hsl(210, 15%, 15%);
+  --accent-light: hsl(220, 85%, 50%);
+  --accent-light-hover: hsl(220, 85%, 55%);
+  --accent-light-active: hsl(220, 85%, 45%);
+  --accent-light-focus: hsl(220, 90%, 60%);
+  --muted-light: hsl(210, 10%, 40%);
+  --border-light: hsl(210, 15%, 85%);
+  --surface-light: hsl(0, 0%, 100%);
 
-  --button-dark-bg-hover: #3e6a4d;
-  --button-light-bg-hover: #008c7e;
-  --button-bg-hover: light-dark(var(--button-light-bg-hover), var(--button-dark-bg-hover));
+  --bg-dark: hsl(210, 25%, 10%);
+  --fg-dark: hsl(210, 20%, 92%);
+  --accent-dark: hsl(220, 85%, 65%);
+  --accent-dark-hover: hsl(220, 85%, 70%);
+  --accent-dark-active: hsl(220, 85%, 60%);
+  --accent-dark-focus: hsl(220, 90%, 75%);
+  --muted-dark: hsl(210, 10%, 65%);
+  --border-dark: hsl(210, 15%, 25%);
+  --surface-dark: hsl(210, 20%, 15%);
 
-  --button-dark-bg-active: #345a41;
-  --button-light-bg-active: #006e63;
-  --button-bg-active: light-dark(var(--button-light-bg-active), var(--button-dark-bg-active));
-
-  --button-dark-fg: #fdfdfd;
-  --button-light-fg: #131313;
-  --button-fg: light-dark(var(--button-light-fg), var(--button-dark-fg));
-
-  --input-dark-bg: #fdfbf7;
-  --input-light-bg: #fdfbf7;
-  --input-bg: light-dark(var(--input-light-bg), var(--input-dark-bg));
-
-  --input-dark-bg-focus: var(--light);
-  --input-light-bg-focus: var(--dark);
-  --input-bg-focus: light-dark(var(--input-light-bg-focus), var(--input-dark-bg-focus));
-
-  --input-font-dark-color: #131313;
-  --input-font-light-color: #131313;
-  --input-font-color: light-dark(var(--input-font-light-color), var(--input-font-dark-color));
-
-  --input-border-size: 2px;
+  --bg: light-dark(var(--bg-light), var(--bg-dark));
+  --fg: light-dark(var(--fg-light), var(--fg-dark));
 }
 
 button {
@@ -50,121 +37,162 @@ button {
 }
 
 :root:has(option[id='theme-system']:checked) {
-  color-scheme: light dark;
+  background-color: var(--bg);
+  color: var(--fg);
 
   input,
   textarea {
-    background-color: var(--input-bg);
-    color: var(--input-font-color);
-  }
+    --surface: light-dark(var(--surface-light), var(--surface-dark));
+    background-color: var(--surface);
+    color: var(--fg);
 
-  input:focus,
-  textarea:focus {
-    border: solid var(--input-border-size) var(--input-bg-focus);
+    &&::placeholder {
+      --muted: light-dark(var(--muted-light), var(--muted-dark));
+      color: var(--muted);
+    }
+
+    &&:focus {
+      --border: light-dark(var(--border-light), var(--border-dark));
+      border: solid 2px var(--border);
+    }
   }
 
   button {
-    background-color: var(--button-bg);
-    color: var(--button-fg);
+    --accent: light-dark(var(--accent-light), var(--accent-dark));
+    background-color: var(--accent);
+    color: var(--bg);
+
+    &&:hover {
+      --accent-hover: light-dark(var(--accent-light-hover), var(--accent-dark-hover));
+      background-color: var(--accent-hover);
+    }
+
+    &&:active {
+      --accent-active: light-dark(var(--accent-light-active), var(--accent-dark-active));
+      background-color: var(--accent-active);
+    }
+
+    &&:focus {
+      --accent-focus: light-dark(var(--accent-light-focus), var(--accent-dark-focus));
+      background-color: var(--accent-focus);
+    }
   }
 
-  button:hover {
-    background-color: var(--button-bg-hover);
-  }
+  select {
+    background-color: var(--bg);
+    color: var(--fg);
+    border: solid 1px var(--fg);
 
-  button:active {
-    background-color: var(--button-bg-active);
+    &&:hover {
+      background-color: var(--fg);
+      color: var(--bg);
+    }
   }
 
   .form {
-    background-color: var(--fg);
-  }
-
-  .form-wrapper__title {
-    color: var(--bg);
-  }
-
-  .form-wrapper__errors {
-    color: var(--bg);
+    --border: light-dark(var(--border-light), var(--border-dark));
+    background-color: var(--border-dark);
   }
 }
 
 :root:has(option[id='theme-light']:checked) {
-  color-scheme: light;
+  background-color: var(--bg-light);
+  color: var(--fg-light);
 
   input,
   textarea {
-    background-color: var(--input-bg);
-    color: var(--input-font-color);
-  }
+    background-color: var(--surface-light);
+    color: var(--fg-light);
 
-  input:focus,
-  textarea:focus {
-    border: solid var(--input-border-size) var(--input-bg-focus);
+    &&::placeholder {
+      color: var(--muted-light);
+    }
+
+    &&:focus {
+      border: solid 2px var(--border-light);
+    }
   }
 
   button {
-    background-color: var(--button-bg);
-    color: var(--button-fg);
+    background-color: var(--accent-light);
+    color: var(--bg-light);
+
+    &&:hover {
+      background-color: var(--accent-light-hover);
+    }
+
+    &&:active {
+      background-color: var(--accent-light-active);
+    }
+
+    &&:focus {
+      background-color: var(--accent-light-focus);
+    }
   }
 
-  button:hover {
-    background-color: var(--button-bg-hover);
-  }
+  select {
+    background-color: var(--bg-light);
+    color: var(--fg-light);
+    border: solid 1px var(--fg-light);
 
-  button:active {
-    background-color: var(--button-bg-active);
+    &&:hover {
+      background-color: var(--fg-light);
+      color: var(--bg-light);
+    }
   }
 
   .form {
-    background-color: var(--fg);
-  }
-
-  .form-wrapper__title {
-    color: var(--bg);
-  }
-
-  .form-wrapper__errors {
-    color: var(--bg);
+    background-color: var(--border-light);
   }
 }
 
 :root:has(option[id='theme-dark']:checked) {
-  color-scheme: dark;
+  background-color: var(--bg-dark);
+  color: var(--fg-dark);
 
   input,
   textarea {
-    background-color: var(--input-bg);
-    color: var(--input-font-color);
-  }
+    background-color: var(--surface-dark);
+    color: var(--fg-dark);
 
-  input:focus,
-  textarea:focus {
-    border: solid var(--input-border-size) var(--input-bg-focus);
+    &&::placeholder {
+      color: var(--muted-dark);
+    }
+
+    &&:focus {
+      border: solid 2px var(--border-dark);
+    }
   }
 
   button {
-    background-color: var(--button-bg);
-    color: var(--button-fg);
+    background-color: var(--accent-dark);
+    color: var(--bg-dark);
+
+    &&:hover {
+      background-color: var(--accent-dark-hover);
+    }
+
+    &&:active {
+      background-color: var(--accent-dark-active);
+    }
+
+    &&:focus {
+      background-color: var(--accent-dark-focus);
+    }
   }
 
-  button:hover {
-    background-color: var(--button-bg-hover);
-  }
+  select {
+    background-color: var(--bg-dark);
+    color: var(--fg-dark);
+    border: solid 1px var(--fg-dark);
 
-  button:active {
-    background-color: var(--button-bg-active);
+    &&:hover {
+      background-color: var(--fg-dark);
+      color: var(--bg-dark);
+    }
   }
 
   .form {
-    background-color: var(--fg);
-  }
-
-  .form-wrapper__title {
-    color: var(--bg);
-  }
-
-  .form-wrapper__errors {
-    color: var(--bg);
+    background-color: var(--border-dark);
   }
 }
