@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      document.querySelector('html')?.setAttribute('data-theme', localStorage.getItem('theme') || 'system');
+    </script>
     <meta charset="UTF-8" />
     <link
       rel="icon"

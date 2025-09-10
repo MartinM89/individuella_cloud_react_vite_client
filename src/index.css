@@ -39,6 +39,7 @@ button {
   cursor: pointer;
 }
 
+:root[data-theme='system'],
 :root:has(option[id='theme-system']:checked) {
   input,
   textarea {
@@ -95,6 +96,7 @@ button {
   }
 }
 
+:root[data-theme='light'],
 :root:has(option[id='theme-light']:checked) {
   background-color: var(--bg-light);
   color: var(--fg-light);
@@ -146,6 +148,7 @@ button {
   }
 }
 
+:root[data-theme='dark'],
 :root:has(option[id='theme-dark']:checked) {
   background-color: var(--bg-dark);
   color: var(--fg-dark);
