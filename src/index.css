@@ -30,6 +30,9 @@
 
   --bg: light-dark(var(--bg-light), var(--bg-dark));
   --fg: light-dark(var(--fg-light), var(--fg-dark));
+
+  background-color: var(--bg);
+  color: var(--fg);
 }
 
 button {
@@ -37,9 +40,6 @@ button {
 }
 
 :root:has(option[id='theme-system']:checked) {
-  background-color: var(--bg);
-  color: var(--fg);
-
   input,
   textarea {
     --surface: light-dark(var(--surface-light), var(--surface-dark));
