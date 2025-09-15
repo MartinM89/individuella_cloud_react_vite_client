@@ -108,21 +108,18 @@ export default function App() {
     <>
       <ThemeSelect />
       <main className='form-wrapper'>
-        <form
-          action=''
-          className='form'
-        >
+        <form className='form'>
           <h1 className='form-wrapper__title'>Contact Form</h1>
           {inputs.map(input => {
             return (
               <>
                 <input
                   key={input.placeholder}
-                  name={input.name}
-                  required
                   type={input.type}
-                  value={formInfo[input.name as keyof Form]}
                   placeholder={input.placeholder}
+                  name={input.name}
+                  value={formInfo[input.name as keyof Form]}
+                  required
                   onChange={e => {
                     handleChange(e);
                     handleErrors(e);
@@ -132,11 +129,10 @@ export default function App() {
             );
           })}
           <textarea
-            name='message'
-            required
-            value={formInfo.message}
-            id=''
             placeholder='Message'
+            name='message'
+            value={formInfo.message}
+            required
             onChange={e => {
               handleChange(e);
               handleErrors(e);
